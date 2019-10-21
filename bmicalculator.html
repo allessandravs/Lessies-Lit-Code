@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html style="background-color:black">
+    <head>
+        <title>BMI Calculator</title>
+        <h1 style="color: aqua">BMI Calculator</h1>
+    </head>
+
+    <script>
+        function calculatebmi(){
+            var feet = document.getElementById("feet").value ; 
+            var inches = document.getElementById("inches").value;
+            feet = parseFloat(feet);
+            inches =parseFloat(inches);
+            var height = (feet * 12) + inches;
+            var text = "Underweight = Blue<br> Normal = Green<br> Overweight = Yellow<br> Obese = Orange<br> Extremely Obese = Red";
+            var weight = document.getElementById("weight").value;
+            if(height > 0 && weight>0){
+                var BMI = (weight * 703) / (height*height);
+            document.getElementById("bmi").innerHTML = BMI;
+            document.getElementById("key").innerHTML = text;
+            }if(BMI < 18.5){
+                bmi.style.color = "aqua";
+            }else if(BMI < 25){
+                bmi.style.color = "green";
+            }else if(BMI < 30){
+                bmi.style.color = "yellow";
+            }else if(BMI < 40){
+                bmi.style.color = "orange";
+            }else{
+                bmi.style.color = "red";
+            }  
+            
+
+            
+        
+
+        }
+       
+            
+
+    
+    </script>
+
+    <body>
+        <form style="color: white">
+                Please enter your height:<input   type="text" id="feet"> ft. <input type="text" id="inches">in.<br>
+                Please enter your weight:<input type="text" id="weight"> lbs. <br>
+                
+        </form>
+        <br>
+        <br>
+        <br>
+        <div style="color: white" id="calculate" onclick="calculatebmi()">Calculate</div>
+        <div id="bmi"></div>
+        <div style="color: white" id="key"></div>
+    </body>
+</html>
