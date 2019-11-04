@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>A/B Day Calculator</title>
+</head>
+<body style="background-color:maroon;">
+        <div>
+        <img src="rbrhs.png" style="width: 200px; height: 169px; float: left"> 
+        <p style="font-size:60px; padding-left: 520px; padding-right: 600px" >Welcome!!!!</p>
+        </div>
+        
+        <br>
+        <br>
+          
+        <p style="text-align:center">I can put predict the future...</p>
+        
+        <div style="text-align: center;">
+                <form>
+                        <p>Is today an A or B day?</p><br>
+                        <div class="radio">
+                        <input type="radio" name="aorb" id="A">A</div><br>
+                        <div class="radio">
+                        <input type="radio" name="aorb" id="B">B</div><br>
+                        <br>
+                        <p>I want to know whether (blank) will be an A or B day.</p><br>
+                        <input type="date" id="day"><br><br>
+                </form>
+        <div id="submit" onclick= findDay()>Submit</div>
+        </div>
+        <div style="text-align: center; color: white; font-size: 25pt" class="container">
+                <p id="Response"></p>
+        </div>
+</body>        
+
+        <script>
+
+       var daysOFF = [new Date('November 7, 2019 00:00'), 
+new Date('November 8, 2019 00:00'), 
+new Date('November 28, 2019 00:00'), 
+new Date('November 29, 2019 00:00'), 
+new Date('December 23, 2019 00:00'), 
+new Date('December 24, 2019 00:00'), 
+new Date('December 25, 2019 00:00'), 
+new Date('December 25, 2019 00:00'),
+new Date('December 26, 2019 00:00'),
+new Date('December 27, 2019 00:00'),
+new Date('December 28, 2019 00:00'),
+new Date('December 29, 2019 00:00'),
+new Date('December 30, 2019 00:00'),
+new Date('December 31, 2019 00:00'),
+new Date('January 1, 2020 00:00'),
+new Date('January 20, 2020 00:00'), 
+new Date('Febuary 17, 2020 00:00'), 
+new Date('April 10, 2020 00:00'),
+new Date('April 11, 2020 00:00'),
+new Date('April 12, 2020 00:00'),
+new Date('April 13, 2020 00:00'),
+new Date('April 14, 2020 00:00'),
+new Date('April 15, 2020 00:00'),
+new Date('April 16, 2020 00:00'),
+new Date('April 17, 2020 00:00'),
+new Date('May 25, 2020 00:00'), 
+new Date('June 18, 2020 00:00')];
+                
+        function findDay(){
+	        var day = new Date(document.getElementById("day").value+" 00:00");
+	
+                var today = new Date();
+
+	        var one_day=1000*60*60*24;
+
+	        var diff = Math.floor((Date.UTC(day.getFullYear(), day.getMonth(), day.getDate()) - Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) ) /(one_day));;
+                
+
+                
+
+                for(var i = 0; i < daysOFF.length; i++){
+                        if(daysOFF[i].getTime() === day.getTime()){
+                                if( i == (daysOFF.length - 1)){
+                                        document.getElementById("Response").innerHTML = "Last Day of School!";
+                                }
+                                else{
+                                        document.getElementById("Response").innerHTML = "You have  off that day!";
+                                }
+                        }
+                        if(daysOFF[i] < day && today < daysOFF[i]){
+                                diff = diff + 1
+                        }
+                        if((daysOFF[daysOFF.length - 1]) < day){
+                                document.getElementById("Response").innerHTML = "Summer Vacation!";
+                        }
+                }
+
+                if(day.getDay() == 0 || day.getDay() == 6){
+                        document.getElementById("Response").innerHTML = "That's a weekend!";
+                }
+               
+                else if(diff%2 == 0){
+                        if(document.getElementById("A").checked){
+                                document.getElementById("Response").innerHTML = "A Day";
+                        }
+                        else{
+                                document.getElementById("Response").innerHTML = "B Day";
+                        }
+                        
+                
+                }
+                else{
+                        if(document.getElementById("A").checked){
+                                document.getElementById("Response").innerHTML = "B Day";
+                        }
+                        else{
+                                document.getElementById("Response").innerHTML = "A Day";
+                        }
+                }
+                for(var i = 0; i < daysOFF.length; i++){
+                        if(daysOFF[i].getTime() === day.getTime()){
+                                if( i == daysOFF.length - 1){
+                                        document.getElementById("Response").innerHTML = "Last Day of School!";
+                                }
+                                else{
+                                        document.getElementById("Response").innerHTML = "You have  off that day!";
+                                }
+                        }
+                        if(daysOFF[i] < day && today < daysOFF[i]){
+                                diff = diff + i + 1
+                        }
+                        if(daysOFF[daysOFF.length - 1] < day){
+                                document.getElementById("Response").innerHTML = "Summer Vacation!";
+                        }
+                        
+                }
+                
+                
+	}
+
+
+
+                
+         
+        </script>
+              
